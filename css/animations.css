@@ -1,0 +1,131 @@
+/* ==========================================================================
+   🏥 animations.css - تأثيرات الحركة والانتقالات للموقع الطبي
+   ========================================================================== */
+
+/* 1. تأثير نبض القلب (Heartbeat) - مثالي لشاشات التحميل والأيقونات الطبية */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.1);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+.heartbeat-hover:hover i,
+.heartbeat-icon {
+    animation: heartbeat 1.5s infinite;
+}
+
+/* 2. شاشة التحميل (Pulse Loader) */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.loader::before, .loader::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    opacity: 0.6;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.loader::after {
+    background-color: var(--color-accent);
+    animation-delay: -1s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+/* 3. تأثيرات الظهور عند التمرير (Reveal Animations) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 4. تأثيرات Hover مخصصة للمقالات والصور */
+.img-zoom-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+}
+
+.img-zoom-wrapper img {
+    transition: transform var(--transition-slow);
+}
+
+.img-zoom-wrapper:hover img {
+    transform: scale(1.08);
+}
+
+/* 5. شريط النيون المتحرك للحدود */
+@keyframes border-glow {
+    0%, 100% {
+        border-color: var(--color-primary);
+    }
+    50% {
+        border-color: var(--color-accent);
+    }
+}
+
+.glowing-border {
+    border: 2px solid var(--color-primary);
+    animation: border-glow 3s infinite;
+}
+
+/* 6. تأثير التماوج الخلفي (Wave / Pulse Backdrops) */
+@keyframes wave-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(35, 66, 173, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(35, 66, 173, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(35, 66, 173, 0);
+    }
+}
+
+.wave-btn {
+    animation: wave-pulse 2s infinite;
+}
